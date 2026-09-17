@@ -1,0 +1,29 @@
+name: Verify cask
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: macos-latest
+    timeout-minutes: 15
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+
+      - name: brew style
+        run: brew style Casks/*.rb
+
+      - name: Release is published and sha256 matches
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: scripts/verify-cask.sh
