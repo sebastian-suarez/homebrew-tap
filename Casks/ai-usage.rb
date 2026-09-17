@@ -4,7 +4,7 @@ cask "ai-usage" do
 
   url "https://github.com/sebastian-suarez/ai-usage/releases/download/v#{version}/AI-usage-#{version}.dmg"
   name "AI Usage"
-  desc "Menu bar app that shows how much of your Claude and ChatGPT usage limits you've used"
+  desc "Menu bar app that tracks your Claude and ChatGPT usage limits"
   homepage "https://github.com/sebastian-suarez/ai-usage"
 
   livecheck do
@@ -16,7 +16,5 @@ cask "ai-usage" do
 
   app "AI usage.app"
 
-  zap trash: [
-    "~/Library/Preferences/dev.sebastiansuarez.AI-usage.plist",
-  ]
+  zap trash: "~/Library/Preferences/dev.sebastiansuarez.AI-usage.plist"
 end
